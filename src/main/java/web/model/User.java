@@ -9,8 +9,8 @@ import javax.persistence.*;
 public class User {
     @Id
     @Column
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private int id;
 
     @Column
     private String firstName;
@@ -29,11 +29,11 @@ public class User {
         this.age = age;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

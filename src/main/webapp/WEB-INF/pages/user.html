@@ -35,9 +35,9 @@
         <td th:utext="${user.getLastName()}">Surname</td>
         <td th:utext="${user.getAge()}">Age</td>
         <td>
-            <a th:href="@{/{id}/update (id = ${user.getId()})}">Update</a>
+            <a th:href="@{/update(id=${user.getId()})}">Update</a>
             <br>
-            <a th:href="@{/{id}/delete (id = ${user.getId()})}">Delete</a>
+            <a th:href="@{/delete(id=${user.getId()})}">Delete</a>
         </td>
     </tr>
 </table>

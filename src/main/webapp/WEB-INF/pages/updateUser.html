@@ -6,7 +6,7 @@
     <title>Update User</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/{id}/update (id=${user.getId()})}" th:object="${user}">
+<form th:method="POST" th:action="@{/update(id=${user.getId()})}" th:object="${user}">
     <fieldset>
         <legend>User:</legend>
         <p>

@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getUsers() {
-        return sessionFactory.getCurrentSession().createQuery("from User").list();
+        return sessionFactory.getCurrentSession().createQuery("from User u order by u.id ASC").list();
     }
 
     @Override
@@ -34,12 +34,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(User user, int id) {
-        User updatedUser = getById(id);
-        updatedUser.setFirstName(user.getFirstName());
-        updatedUser.setLastName(user.getLastName());
-        updatedUser.setAge(user.getAge());
-        sessionFactory.getCurrentSession().update(updatedUser);
+    public void update(User user) {
+        sessionFactory.getCurrentSession().update(user);
     }
 
     @Override
