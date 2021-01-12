@@ -8,24 +8,30 @@
 
 <body>
 
-<form th:method="POST" th:action="@{/new}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/new}" th:object="${user}">
     <fieldset>
         <legend>New User:</legend>
         <p>
-            <label for="firstName">First Name</label>
-            <input type="text" th:field="*{firstName}" id="firstName"/>
+            <label for="username">Username</label>
+            <input type="text" th:field="*{username}" id="username"/>
         </p>
         <p>
-            <label for="lastName">Last Name</label>
-            <input type="text" th:field="*{lastName}" id="lastName"/>
+            <label for="password">Password</label>
+            <input type="text" th:field="*{password}" id="password"/>
         </p>
         <p>
-            <label for="age">Age  </label>
-            <input type="number" th:field="*{age}" id="age"/>
+            <label for="email">Email</label>
+            <input type="email" th:field="*{email}" id="email"/>
+        </p>
+        <p>
+            <label for="user_role">User</label>
+            <input type="checkbox" th:field="*{roles}" id="user_role" value="ROLE_USER" checked/>
+            <label for="admin_role">Admin</label>
+            <input type="checkbox" th:field="*{roles}" id="admin_role" value="ROLE_ADMIN"/>
         </p>
     </fieldset>
     <p>
-        <input type="submit" value="Add to DB"/>
+        <input type="submit" value="Add new user"/>
     </p>
 </form>
 </body>

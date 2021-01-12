@@ -1,9 +1,9 @@
 package web.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
+import web.model.Role;
 import web.model.User;
 import web.service.UserService;
 
@@ -15,40 +15,57 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
 
-    @Autowired
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
     @Transactional
-    public void add(User user) {
-        userDao.add(user);
+    public void addUser(User user) {
+        userDao.addUser(user);
     }
 
     @Override
     @Transactional
-    public List<User> getUsers() {
-        return userDao.getUsers();
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 
     @Override
     @Transactional
-    public void delete(int id) {
+    public User getUserByName(String username) {
+        return userDao.getUserByName(username);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(Long id) {
         User user = new User();
         user.setId(id);
-        userDao.delete(user);
+        userDao.deleteUser(user);
     }
 
     @Override
     @Transactional
-    public void update(User user) {
-        userDao.update(user);
+    public void updateUser(User user) {
+        userDao.updateUser(user);
     }
 
     @Override
     @Transactional
-    public User getById(int id) {
-        return userDao.getById(id);
+    public User getUserById(Long id) {
+        return userDao.getUserById(id);
+    }
+
+    @Override
+    @Transactional
+    public Role getRoleByName(String role) {
+        return userDao.getRoleByName(role);
+    }
+
+    @Override
+    @Transactional
+    public void addRole(Role role) {
+        userDao.addRole(role);
     }
 }

@@ -10,7 +10,7 @@ public class DispatcherConfig extends AbstractAnnotationConfigDispatcherServletI
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
-                DBConfig.class
+                WebConfig.class, SecurityConfig.class
         };
     }
 

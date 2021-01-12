@@ -1,17 +1,25 @@
 package web.service;
 
+import web.model.Role;
 import web.model.User;
 
 import java.util.List;
 
 public interface UserService {
-    void add(User user);
 
-    List<User> getUsers();
+    void addUser(User user);
 
-    void delete(int id);
+    List<User> getAllUsers();
 
-    void update(User user);
+    User getUserByName(String username);
 
-    User getById(int id);
+    void deleteUser(Long id);
+
+    void updateUser(User user);
+
+    User getUserById(Long id);
+
+    Role getRoleByName(String role);
+
+    void addRole(Role role);
 }

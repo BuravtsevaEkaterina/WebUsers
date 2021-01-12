@@ -6,46 +6,53 @@
     <title>Users</title>
     <style type="text/css">
         TABLE {
-            width: 700px; /* Ширина таблицы */
-            border-collapse: collapse; /* Убираем двойные линии между ячейками */
+            width: 700px;
+            border-collapse: collapse;
         }
 
         TD, TH {
-            padding: 5px; /* Поля вокруг содержимого таблицы */
-            border: 1px solid black; /* Параметры рамки */
+            padding: 5px;
+            border: 1px solid black;
             text-align: center;
         }
 
         TH {
-            background: lightgreen; /* Цвет фона */
+            background: lightgreen;
         }
     </style>
 </head>
 
 <body>
+<form action="/logout">
+    <button>Logout</button>
+</form>
 <h1>List of users:</h1>
+<form action="/admin/new">
+    <button>Add new user</button>
+</form>
+<br>
 <table>
     <tr>
         <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Roles</th>
         <th>Actions</th>
     </tr>
     <tr th:each="user : ${users}">
         <td th:utext="${user.getId()}">ID</td>
-        <td th:utext="${user.getFirstName()}">Name</td>
-        <td th:utext="${user.getLastName()}">Surname</td>
-        <td th:utext="${user.getAge()}">Age</td>
+        <td th:utext="${user.getUsername()}">Name</td>
+        <td th:utext="${user.getPassword()}">Surname</td>
+        <td th:utext="${user.getEmail()}">Email</td>
+        <td th:utext="${user.getRoles()}">Roles</td>
         <td>
-            <a th:href="@{/{id} (id = ${user.getId()})}">More</a>
+            <a th:href="@{/admin/update(id=${user.getId()})}">Update</a>
+            <a th:href="@{/admin/delete(id=${user.getId()})}">Delete</a>
         </td>
     </tr>
 </table>
 <br>
-<form action="/new">
-    <button>Add new user</button>
-</form>
 </body>
 </html>
 </html>

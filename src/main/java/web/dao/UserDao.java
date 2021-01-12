@@ -1,18 +1,25 @@
 package web.dao;
 
+import web.model.Role;
 import web.model.User;
 
 import java.util.List;
 
 public interface UserDao {
 
-    void add(User user);
+    void addUser(User user);
 
-    List<User> getUsers();
+    List<User> getAllUsers();
 
-    void delete(User user);
+    void deleteUser(User user);
 
-    void update(User user);
+    void updateUser(User user);
 
-    User getById(int id);
+    User getUserById(Long id);
+
+    User getUserByName(String name);
+
+    Role getRoleByName(String role);
+
+    void addRole(Role role);
 }
