@@ -35,7 +35,6 @@
     <tr>
         <th>ID</th>
         <th>Username</th>
-        <th>Password</th>
         <th>Email</th>
         <th>Roles</th>
         <th>Actions</th>
@@ -43,7 +42,6 @@
     <tr th:each="user : ${users}">
         <td th:utext="${user.getId()}">ID</td>
         <td th:utext="${user.getUsername()}">Name</td>
-        <td th:utext="${user.getPassword()}">Surname</td>
         <td th:utext="${user.getEmail()}">Email</td>
         <td th:utext="${user.getRoles()}">Roles</td>
         <td>

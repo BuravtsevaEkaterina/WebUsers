@@ -2,6 +2,7 @@ package web.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import web.security.SecurityConfig;
 
 import javax.servlet.Filter;
 

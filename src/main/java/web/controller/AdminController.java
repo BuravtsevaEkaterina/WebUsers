@@ -39,6 +39,9 @@ public class AdminController {
 
     @PostMapping("/update")
     public String update(@ModelAttribute User user) {
+        if (user.getPassword() == null) {
+            user.setPassword(userService.getUserById(user.getId()).getPassword());
+        }
         userService.updateUser(user);
         return "redirect:/admin";
     }

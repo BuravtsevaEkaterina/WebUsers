@@ -1,26 +1,29 @@
 package web.dao.impl;
 
 import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
-import web.model.Role;
 import web.model.User;
 
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-@Transactional
 public class UserDaoImpl implements UserDao {
 
     private SessionFactory sessionFactory;
+    private PasswordEncoder passwordEncoder;
 
-    public UserDaoImpl(SessionFactory sessionFactory) {
+    public UserDaoImpl(SessionFactory sessionFactory, @Lazy PasswordEncoder passwordEncoder) {
         this.sessionFactory = sessionFactory;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         sessionFactory.getCurrentSession().save(user);
     }
 
@@ -36,6 +39,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         sessionFactory.getCurrentSession().saveOrUpdate(user);
     }
 
@@ -46,16 +50,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserByName(String name) {
-        return sessionFactory.getCurrentSession().createQuery("from User where username = '" + name + "'", User.class).getSingleResult();
+        Query query = sessionFactory.getCurrentSession().createQuery("from User where username = :name");
+        query.setParameter("name", name);
+        return (User)query.getSingleResult();
     }
 
-    @Override
-    public Role getRoleByName(String role) {
-        return sessionFactory.getCurrentSession().createQuery("from Role where name = '" + role + "'", Role.class).getSingleResult();
-    }
-
-    @Override
-    public void addRole(Role role) {
-        sessionFactory.getCurrentSession().saveOrUpdate(role);
-    }
 }
